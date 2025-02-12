@@ -1,6 +1,10 @@
+"use client";
 import Image from "next/image"
 import { ToggleTheme } from "../ui/ToggleTheme"
 import MenuNav from "./MenuNav"
+import SignIn from "../ui/auth/Sign-in"
+import { SignOut } from "../ui/auth/Sign-out"
+import AuthBtn from "../ui/auth/AuthBtn"
 
 function Navbar() {
   return (
@@ -28,6 +32,7 @@ function Navbar() {
             </div>
             <div className="w-1/3 flex justify-end items-center gap-4"> 
                 <MenuNav/>
+                <AuthBtn />
                 <ToggleTheme />
             </div>
         </nav>

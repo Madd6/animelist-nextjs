@@ -1,5 +1,5 @@
 "use client"
-import React, { ReactNode, useEffect, useState} from 'react'
+import React, { ReactNode, useEffect, useRef, useState} from 'react'
 
 interface props {
   toggle?:ReactNode;
@@ -8,23 +8,34 @@ interface props {
 
 const MyDropdown = ({ toggle, menu }: props) => {
   const [ isOpen , setIsOpen ] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    console.log(isOpen)
-  }, [isOpen])
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className='relative'>
-      <div onClick={() => setIsOpen(!isOpen)} className='cursor-pointer p-2 border rounded-md'>
+    <div className='relative' ref={dropdownRef}>
+      <div onClick={() => setIsOpen(!isOpen)} className='cursor-pointer '>
         {toggle}
       </div>
-      <div 
-      className={`absolute bg-secondary min-w-40 rounded-md p-2 
-        right-0 top-full mt-2  ${isOpen ? "flex opacity-100" : "none opacity-0"}
-        starting:open:opacity-0 transition-all transition-discrete
-        duration-100 ease-in-out`}
-      >
-        {menu? menu : <h3>menu</h3>}
-      </div>
+      {isOpen && (
+        <div
+          className="absolute bg-secondary min-w-40 rounded-md p-2 
+          right-0 top-full mt-2 flex opacity-100 transition-all duration-100 ease-in-out"
+        >
+          {menu ? menu : <h3>menu</h3>}
+        </div>
+      )}
     </div>
   )
 }

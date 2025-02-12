@@ -6,17 +6,7 @@ import Link from 'next/link'
 
 function MenuNav() {
   return (
-    <MyDropdown
-      toggle={
-        <ToggleDropdown><h3>test</h3></ToggleDropdown>
-      }
-      menu={
-        <MenuDropdown>
-          <Link href="/">hehe</Link>
-          <Link href="/">hehe</Link>
-        </MenuDropdown>
-      }
-    />
+    <div></div>
   )
 }
 
