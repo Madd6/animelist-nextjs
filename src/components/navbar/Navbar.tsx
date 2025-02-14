@@ -2,9 +2,9 @@
 import Image from "next/image"
 import { ToggleTheme } from "../ui/ToggleTheme"
 import MenuNav from "./MenuNav"
-import SignIn from "../ui/auth/Sign-in"
-import { SignOut } from "../ui/auth/Sign-out"
-import AuthBtn from "../ui/auth/AuthBtn"
+import SignIn from "../auth/Sign-in"
+import { SignOut } from "../auth/Sign-out"
+import AuthBtn from "../auth/AuthBtn"
 
 function Navbar() {
   return (

@@ -3,9 +3,9 @@ import SignIn from './Sign-in'
 import { SignOut } from './Sign-out'
 import { useSession } from 'next-auth/react';
 import { UserAvatar } from './UserAvatar';
-import MyDropdown from '../myDropdown/MyDropdown';
-import ToggleDropdown from '../myDropdown/ToggleDropdown';
-import MenuDropdown from '../myDropdown/MenuDropdown';
+import MyDropdown from '../ui/myDropdown/MyDropdown';
+import ToggleDropdown from '../ui/myDropdown/ToggleDropdown';
+import MenuDropdown from '../ui/myDropdown/MenuDropdown';
 
 function AuthBtn() {
   const { data: session, status } = useSession();
@@ -17,7 +17,6 @@ function AuthBtn() {
             <SignIn />
         )}
         {status === "authenticated" && (
-            // <SignOut />
             <MyDropdown
                 toggle={
                     <ToggleDropdown><UserAvatar session={session}/></ToggleDropdown>
